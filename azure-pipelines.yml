@@ -1,0 +1,44 @@
+trigger:
+  branches:
+    include:
+      - master
+pool:
+  vmImage: 'macos-latest'
+steps:
+  - checkout: self
+    persistCredentials: true
+    clean: true
+  - task: NodeTool@0
+    displayName: 'Install Node'
+    inputs:
+      versionSpec: '18.12.1' # you can use your desired version here
+      # workingDirectory: 'app-rn/'
+  - script: yarn install
+    displayName: Install Dependencies
+  - task: CocoaPods@0
+    displayName: 'Install CocoaPods'
+    inputs:
+      workingDirectory: './ios'
+  - task: Xcode@5
+    displayName: 'Build IPA'
+    inputs:
+      actions: 'build'
+      configuration: 'Release'
+      xcodeVersion: '10'
+      sdk: 'iphoneos'
+      xcWorkspacePath: './ios/AwesomeProject.xcworkspace'
+      scheme: 'AwesomeProject'
+      packageApp: true
+      exportPath: 'output'
+      signingOption: nosign 
+  #    signingOption: 'manual'
+  #    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+   
+  #    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+  - task: CopyFiles@2
+    displayName: 'Copy IPA'
+    inputs:
+      contents: '**/*.ipa'
+      targetFolder: '$(build.artifactStagingDirectory)'
+      overWrite: true
+      flattenFolders: true
