@@ -24,7 +24,6 @@ steps:
     inputs:
       actions: 'build'
       configuration: 'Release'
-      xcodeVersion: '10'
       sdk: 'iphoneos'
       xcWorkspacePath: './ios/AwesomeProject.xcworkspace'
       scheme: 'AwesomeProject'
