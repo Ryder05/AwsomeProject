@@ -29,7 +29,7 @@ steps:
       scheme: 'AwesomeProject'
       packageApp: true
       exportPath: 'output'
-      signingOption: 'nosign' 
+      signingOption: 'auto' 
       exportOptions: 'specify'
       exportTeamId: '0505199855'
 
