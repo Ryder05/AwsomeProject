@@ -29,7 +29,10 @@ steps:
       scheme: 'AwesomeProject'
       packageApp: true
       exportPath: 'output'
-      signingOption: nosign 
+      signingOption: 'nosign' 
+      exportOptions: 'specify'
+      exportTeamId: '0505199855'
+
   #    signingOption: 'manual'
   #    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
    
