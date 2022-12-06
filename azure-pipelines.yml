@@ -14,8 +14,8 @@ steps:
     clean: true
   - task: InstallAppleCertificate@2
     inputs:
-      certSecureFile: 'development.cer'
-      certPwd: 'Admin@123'
+      certSecureFile: 'mycert.p12'
+      certPwd: '05051998'
       keychain: 'temp'
       deleteCert: true
   - task: InstallAppleProvisioningProfile@1
